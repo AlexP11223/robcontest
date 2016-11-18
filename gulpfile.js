@@ -1,3 +1,5 @@
+process.env.DISABLE_NOTIFIER = true; // disable desktop notifications (annoying if using watch and without VM)
+
 const elixir = require('laravel-elixir');
 
 const phpunit = require('gulp-phpunit');
