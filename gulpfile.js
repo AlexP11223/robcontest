@@ -1,5 +1,6 @@
 const elixir = require('laravel-elixir');
 
+const phpunit = require('gulp-phpunit');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,5 +15,6 @@ const elixir = require('laravel-elixir');
 
 elixir((mix) => {
     mix.sass('app.scss')
-       .webpack('app.js');
+       .webpack('app.js')
+       .phpUnit();
 });
