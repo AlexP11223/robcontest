@@ -1,8 +1,9 @@
 {
   "private": true,
   "scripts": {
+    "build": "gulp",
     "prod": "gulp --production",
-    "dev": "gulp watch"
+    "watch": "gulp watch"
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
