@@ -39,8 +39,8 @@ class UserTest extends TestCase
 
         $user->removeRole($adminRole);
 
-        $user->load('roles');
-        $adminRole->load('users');
+        $user = $user->fresh();
+        $adminRole = $adminRole->fresh();
 
         self::assertFalse($user->hasRole('admin'));
         self::assertFalse($adminRole->users->contains($user));
