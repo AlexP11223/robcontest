@@ -10,6 +10,7 @@
     "gulp": "^3.9.1",
     "gulp-phpunit": "^0.21.4",
     "jquery": "^1.2.4",
+    "jquery-validation": "^1.15.1",
     "laravel-elixir": "^6.0.0-14",
     "laravel-elixir-webpack-official": "^1.0.2",
     "lodash": "^4.16.2"

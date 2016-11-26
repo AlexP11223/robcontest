@@ -15,5 +15,6 @@ const phpunit = require('gulp-phpunit');
 elixir((mix) => {
     mix.sass('app.scss')
        .webpack('app.js')
+       .webpack('login.js')
        .phpUnit();
 });

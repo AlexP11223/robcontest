@@ -1,9 +1,13 @@
-
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
-// Variables
 @import "variables";
 
-// Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+label.error, ul.error {
+  color: red;
+}
+
+.list-no-indent {
+  list-style-position: inside;
+  padding-left:0;
+}
