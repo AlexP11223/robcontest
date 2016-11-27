@@ -49,9 +49,9 @@
             </div>
         </nav>
 
+        <script src="/js/common.js"></script>
+
         @yield('content')
     </div>
-
-    <script src="/js/app.js"></script>
 </body>
 </html>
