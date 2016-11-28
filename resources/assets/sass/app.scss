@@ -2,12 +2,8 @@
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+@import "common";
+@import "page";
+@import "menu";
+@import "login";
 
-label.error, ul.error {
-  color: red;
-}
-
-.list-no-indent {
-  list-style-position: inside;
-  padding-left:0;
-}

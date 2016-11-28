@@ -1,0 +1,20 @@
+.page-header {
+  padding-bottom: 10px;
+
+  h1 {
+    vertical-align: middle;
+  }
+
+  img {
+    width: 128px;
+  }
+  @media (max-width: 991px) {
+    img {
+      width: 64px;
+    }
+  }
+}
+
+.main-container {
+  padding-bottom: 30px;
+}
