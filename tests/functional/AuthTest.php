@@ -10,7 +10,7 @@ class AuthTest extends TestCase
     public static function adminPages()
     {
         return array(
-            array('/home'),
+            array('/posts/create', 'Create post'),
         );
     }
 
@@ -28,12 +28,12 @@ class AuthTest extends TestCase
         $this->call('POST', '/admin-login', ['name' => 'admin', 'password' => $this->defaultAdminPassword()]);
 
         $this
-            ->assertRedirectedTo('/home')
+            ->assertRedirectedTo('/')
             ->sessionHasNoErrors();
 
         $this
-            ->visit('/home')
-            ->see('Logged in');
+            ->visit('/')
+            ->see('Logout');
     }
 
     /** @test
@@ -53,12 +53,12 @@ class AuthTest extends TestCase
     /** @test
      *  @dataProvider adminPages
      */
-    public function admin_can_access_admin_pages($page)
+    public function admin_can_access_admin_pages($page, $pageContent)
     {
         $this
             ->actingAs($this->admin())
             ->visit($page)
-            ->see('Dashboard');
+            ->see($pageContent);
 
     }
 
@@ -70,6 +70,5 @@ class AuthTest extends TestCase
         $this
             ->get($page)
             ->assertRedirectedToRoute('login');
-
     }
 }
