@@ -25,7 +25,7 @@ class AuthTest extends TestCase
     /** @test */
     public function admin_can_log_in()
     {
-        $this->call('POST', '/admin-login', ['name' => 'admin', 'password' => $this->defaultAdminPassword()]);
+        $this->post('admin-login', ['name' => 'admin', 'password' => $this->defaultAdminPassword()]);
 
         $this
             ->assertRedirectedTo('/')
@@ -41,12 +41,12 @@ class AuthTest extends TestCase
      */
     public function cannot_log_in_without_valid_credentials($params)
     {
-        $this->visit('/admin-login');
+        $this->visit('admin-login');
 
-        $this->call('POST', '/admin-login', $params);
+        $this->post('admin-login', $params);
 
         $this
-            ->assertRedirectedTo('/admin-login')
+            ->assertRedirectedTo('admin-login')
             ->assertSessionHasErrors();
     }
 
