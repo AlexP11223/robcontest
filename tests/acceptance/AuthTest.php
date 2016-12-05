@@ -29,7 +29,7 @@ class AuthTest extends TestCase
 
         $this
             ->assertRedirectedTo('/')
-            ->sessionHasNoErrors();
+            ->assertSessionHasNoErrors();
 
         $this
             ->visit('/')

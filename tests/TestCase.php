@@ -37,8 +37,14 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
         return "pass123";
     }
 
-    protected function sessionHasNoErrors()
+    /**
+     * @return $this
+     */
+    protected function assertSessionHasNoErrors()
     {
-        $this->assertSessionMissing('errors');
+        if ($this->app['session.store']->has('errors')) {
+            self::fail("Session has unexpected errors " . json_encode($this->app['session.store']->get('errors')->all()));
+        }
+        return $this;
     }
 }
