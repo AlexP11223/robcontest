@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -88,5 +89,14 @@ class User extends Authenticatable
     public function removeRole($role)
     {
         return $this->roles()->detach($role);
+    }
+
+    /**
+     * @param string $newPassword
+     */
+    public function changePassword(string $newPassword)
+    {
+        $this->password = Hash::make($newPassword);
+        $this->save();
     }
 }

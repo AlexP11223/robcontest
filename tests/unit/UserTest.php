@@ -46,4 +46,13 @@ class UserTest extends TestCase
         self::assertFalse($adminRole->users->contains($user));
     }
 
+    /** @test */
+    public function can_change_password()
+    {
+        $user = factory(User::class)->create();
+
+        $user->changePassword('newPassword');
+
+        self::assertTrue(Hash::check('newPassword', $user->password), 'New password does not work');
+    }
 }

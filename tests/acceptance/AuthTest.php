@@ -10,7 +10,8 @@ class AuthTest extends TestCase
     public static function adminPages()
     {
         return array(
-            array('/posts/create', 'Create post'),
+            array('posts/create', 'Create post'),
+            array('change-password', 'Change password'),
         );
     }
 

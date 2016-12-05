@@ -74,6 +74,13 @@
 
                     <div class="user-menu-item">
                         <strong>{{ Auth::user()->name }}</strong>
+
+                        <div>
+                            <a href="{{ route('change-password') }}" role="button">
+                                Change password
+                            </a>
+                        </div>
+
                         <div>
                             <form action="{{ route('logout') }}" class="logout-form" method="post">
                                 {{ csrf_field() }}
