@@ -11,7 +11,7 @@ class UserTest extends TestCase
     /** @test */
     public function has_only_assigned_roles()
     {
-        $adminRole = Role::whereName('admin')->first();
+        $adminRole = Role::getByName('admin');
 
         $users = factory(User::class, 2)->create();
 
@@ -28,7 +28,7 @@ class UserTest extends TestCase
     /** @test */
     public function can_remove_role()
     {
-        $adminRole = Role::whereName('admin')->first();
+        $adminRole = Role::getByName('admin');
 
         $user = factory(User::class)->create();
 

@@ -20,4 +20,13 @@ class Role extends Model
     public function users() {
         return $this->belongsToMany(User::class, 'users_roles');
     }
+
+    /**
+     * @param string $role
+     * @return Role|null
+     */
+    static function getByName($role)
+    {
+        return Role::whereName($role)->first();
+    }
 }
