@@ -2,6 +2,6 @@
 
 @section('content')
 
-    hi
+    @include('posts.list')
 
 @endsection

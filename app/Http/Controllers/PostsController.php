@@ -2,24 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
-        $this->middleware('role:admin')->except(['index', 'show']);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+        $this->middleware('auth')->except(['show']);
+        $this->middleware('role:admin')->except(['show']);
     }
 
     /**
@@ -49,9 +40,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('posts.post', ['post' => $post]);
     }
 
     /**

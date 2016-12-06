@@ -11,16 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index');
+
+Route::resource('posts', 'PostsController', ['except' => 'index']);
 
 Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('admin-login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-
 Route::get('change-password', 'UserController@showChangePasswordForm')->name('change-password');
 Route::post('change-password', 'UserController@changePassword');
 
-Route::resource('posts', 'PostsController');

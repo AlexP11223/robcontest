@@ -47,4 +47,12 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
         }
         return $this;
     }
+
+    /**
+     * @param $key string
+     * @return mixed
+     */
+    protected function viewData($key) {
+        return $this->response->original->$key;
+    }
 }
