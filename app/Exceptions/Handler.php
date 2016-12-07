@@ -60,6 +60,10 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
+        if ($request->method() != 'GET') {
+            abort(403, 'Unauthorized action.');
+        }
+
         return redirect()->guest(route('login'));
     }
 }
