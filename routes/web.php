@@ -13,6 +13,10 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('info', function() {
+    return view('info');
+});
+
 Route::resource('posts', 'PostsController', ['except' => 'index']);
 
 Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('login');
