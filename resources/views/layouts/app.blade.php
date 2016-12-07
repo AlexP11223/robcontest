@@ -64,7 +64,7 @@
                                 </a>
                             </div>
                             <div class="user-menu-item">
-                                <a href="/" role="button" class="btn btn-primary btn-block">
+                                <a href="{{ route('posts.create') }}" role="button" class="btn btn-primary btn-block">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                     Add post
                                 </a>

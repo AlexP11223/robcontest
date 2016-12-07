@@ -11,6 +11,7 @@ class AuthTest extends TestCase
     {
         return array(
             array('posts/create', 'Create post'),
+            array('posts/1/edit', 'Edit post'),
             array('change-password', 'Change password'),
         );
     }

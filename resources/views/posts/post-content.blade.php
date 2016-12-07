@@ -12,9 +12,11 @@
 
     @if (Auth::check() && Auth::user()->hasRole('admin'))
         <div class="post-actions">
-            <a data-action="editPost">edit</a>
+            <a href="{{ route('posts.edit', [$post->id]) }}">edit</a>
 
             <a data-action="deletePost" href="#">delete</a>
         </div>
+
+        <script src="/js/post.js"></script>
     @endif
 </div>

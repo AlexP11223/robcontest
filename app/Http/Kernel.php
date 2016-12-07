@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\TrimInput;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -54,5 +55,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'role' => CheckRole::class,
+        'trim' => TrimInput::class,
     ];
 }

@@ -8,7 +8,8 @@ module.exports = {
         common: "./js/common.js",
         login: "./js/login.js",
         user: "./js/user.js",
-        post: "./js/post.js"
+        post: "./js/post.js",
+        postedit: "./js/postedit.js"
     },
     output: {
         path: path.join(__dirname, "public/js"),

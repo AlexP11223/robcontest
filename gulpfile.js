@@ -15,6 +15,7 @@ const phpunit = require('gulp-phpunit');
 elixir((mix) => {
     mix.sass('app.scss')
        .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/','public/fonts/bootstrap')
-       .webpack(['common.js', 'login.js', 'user.js', 'post.js'])
+       .copy('node_modules/pagedown-editor/wmd-buttons.png','public/pagedown/wmd-buttons.png')
+       .webpack(['common.js', 'login.js', 'user.js', 'post.js', 'postedit.js'])
        .phpUnit();
 });

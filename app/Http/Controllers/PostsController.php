@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUpdatePost;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Redirect;
 
 class PostsController extends Controller
 {
@@ -11,6 +13,8 @@ class PostsController extends Controller
     {
         $this->middleware('auth')->except(['show']);
         $this->middleware('role:admin')->except(['show']);
+
+        $this->middleware('trim')->only(['store', 'update']);
     }
 
     /**
@@ -20,24 +24,29 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return '<h1>Create post form</h1>';
+        return view('posts.edit', ['isEditing' => false]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateUpdatePost $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUpdatePost $request)
     {
-        //
+        Post::create([
+            'title' => $request['title'],
+            'content' => $request['content']
+        ]);
+
+        return Redirect::to('/');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
@@ -48,24 +57,29 @@ class PostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['isEditing' => true, 'post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param CreateUpdatePost $request
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateUpdatePost $request, Post $post)
     {
-        //
+        $post->update([
+            'title' => $request['title'],
+            'content' => $request['content']
+        ]);
+
+        return Redirect::route('posts.show', [$post->id]);
     }
 
     /**
