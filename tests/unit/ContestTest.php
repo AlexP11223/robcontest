@@ -1,13 +1,9 @@
-
 <?php
 
 use App\Models\Contest;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ContestTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function current_returns_latest_contest()
     {

@@ -1,13 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Models\User;
 use App\Models\Role;
 
 class UserTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function has_only_assigned_roles()
     {

@@ -5,8 +5,6 @@ use App\Models\User;
 
 class AuthTest extends TestCase
 {
-    use DatabaseMigrations;
-
     public static function adminPages()
     {
         return array(

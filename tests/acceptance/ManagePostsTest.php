@@ -1,12 +1,9 @@
 <?php
 
 use App\Models\Post;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ManagePostsTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function can_create_post()
     {

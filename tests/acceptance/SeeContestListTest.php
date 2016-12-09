@@ -2,12 +2,9 @@
 <?php
 
 use App\Models\Contest;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SeeContestListTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function can_see_contests_on_main_page()
     {

@@ -1,12 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use App\Models\User;
-
 class ChangePasswordTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function should_change_password()
     {

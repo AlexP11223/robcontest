@@ -1,11 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-
 class InfoPagesTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function can_open_info_page()
     {

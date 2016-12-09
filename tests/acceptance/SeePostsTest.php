@@ -1,11 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-
 class SeePostsTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function can_see_posts_on_main_page()
     {
