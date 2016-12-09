@@ -29,3 +29,11 @@ $factory->define(App\Models\Role::class, function (Faker\Generator $faker) {
         'name' => $faker->name
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Contest::class, function (Faker\Generator $faker) {
+    return [
+        'name' => 'RobLeg ' . $faker->unique->numberBetween(1970, 2000),
+        'isRegistrationFinished' => false,
+    ];
+});

@@ -2,6 +2,27 @@
 
 @section('content')
 
+    <div>
+        <div class="contest-list">
+            <p>
+                <a class="contest-link active-contest" href="{{ route('contests.show', [$currentContest->urlSlug]) }}">{{ $currentContest->name }}</a>
+            </p>
+        </div>
+
+        <p class="archive-link">
+            <a class="lead dotted-link" href="javascript:void(0)" id="archiveBtn">Archive</a>
+        </p>
+        <div  class="contest-list">
+            <div id="archive" style="display:none;">
+                @foreach($archivedContests as $contest)
+                    <ul>
+                        <li class="contest-link"><a href="{{ route('contests.show', [$contest->urlSlug]) }}">{{ $contest->name }}</a></li>
+                    </ul>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
     @include('posts.list')
 
     <script>
@@ -17,5 +38,7 @@
             menuCol.prependTo(menuCol.parent());
         });
     </script>
+
+    <script src="/js/home.js"></script>
 
 @endsection

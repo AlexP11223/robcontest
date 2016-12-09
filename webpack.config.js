@@ -6,6 +6,7 @@ module.exports = {
 
     entry: {
         common: "./js/common.js",
+        home: "./js/home.js",
         login: "./js/login.js",
         user: "./js/user.js",
         post: "./js/post.js",
