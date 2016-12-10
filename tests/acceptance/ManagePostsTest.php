@@ -141,6 +141,26 @@ class ManagePostsTest extends TestCase
     }
 
     /** @test */
+    public function can_delete_post()
+    {
+        $post = Post::latest()->first();
+
+        $this
+            ->actingAs(self::admin())
+            ->delete('posts/' . $post->id);
+
+        $this->assertResponseOk();
+
+        $this->assertNull(Post::find($post->id));
+
+        $this
+            ->actingAs(self::admin())
+            ->delete('posts/' . $post->id);
+
+        $this->assertResponseStatus(404);
+    }
+
+    /** @test */
     public function users_cannot_perform_admin_requests()
     {
         $this->post('posts')

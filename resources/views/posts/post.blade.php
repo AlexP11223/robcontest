@@ -4,4 +4,6 @@
 
     @include('posts.post-content')
 
+    <script src="/js/post.js"></script>
+
 @endsection

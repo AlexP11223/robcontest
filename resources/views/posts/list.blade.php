@@ -4,4 +4,6 @@
     @endforeach
 
     {{ $posts->links() }}
+
+    <script src="/js/post.js"></script>
 </div>

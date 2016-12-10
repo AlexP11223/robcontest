@@ -22,6 +22,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereContent($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Post extends Model
 {

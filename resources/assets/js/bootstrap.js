@@ -2,7 +2,7 @@
 window._ = require('lodash');
 
 window.$ = window.jQuery = require('jquery');
-require('jquery-validation')
+require('jquery-validation');
 
 require('bootstrap-sass');
 
