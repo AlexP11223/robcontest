@@ -3,7 +3,7 @@
         <a class="h2 post-title" href="posts/{{ $post->id }}">
             {{ $post->title }}
         </a>
-        <p class="post-date">{{ $post->created_at }}</p>
+        <p class="post-date">{{ $post->created_at->format('Y-m-d H:i') }}</p>
 
         <div class="post-maincontent">
             {!! $post->html() !!}
