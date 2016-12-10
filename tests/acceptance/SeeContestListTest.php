@@ -49,4 +49,21 @@ class SeeContestListTest extends TestCase
                 ->see($archivedContest->name);
         }
     }
+
+    /** @test */
+    public function works_when_no_contests()
+    {
+        DB::table('contests')->delete();
+
+        $this->visit('/');
+
+        $this->assertViewHas('currentContest');
+        $this->assertViewHas('archivedContests');
+
+        $contest = $this->viewData('currentContest');
+        $archivedContests = $this->viewData('archivedContests');
+
+        $this->assertCount(0, $archivedContests);
+        $this->assertNull($contest);
+    }
 }

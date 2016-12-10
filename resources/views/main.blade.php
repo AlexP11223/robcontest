@@ -3,11 +3,13 @@
 @section('content')
 
     <div>
-        <div class="contest-list">
-            <p>
-                <a class="contest-link active-contest" href="{{ route('contests.show', [$currentContest->urlSlug]) }}">{{ $currentContest->name }}</a>
-            </p>
-        </div>
+        @if(isset($currentContest))
+            <div class="contest-list">
+                <p>
+                    <a class="contest-link active-contest" href="{{ route('contests.show', [$currentContest->urlSlug]) }}">{{ $currentContest->name }}</a>
+                </p>
+            </div>
+        @endif
 
         <p class="archive-link">
             <a class="lead dotted-link" href="javascript:void(0)" id="archiveBtn">Archive</a>
