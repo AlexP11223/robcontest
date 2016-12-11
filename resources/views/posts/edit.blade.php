@@ -22,12 +22,12 @@
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ $isEditing ? $post->title : '' }}"/>
+                <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $isEditing ? $post->title : '') }}"/>
             </div>
 
             <div class="form-group wmd-panel">
                 <div id="wmd-button-bar"></div>
-                <textarea class="wmd-input" id="wmd-input" name="content">{{ $isEditing ? $post->content : '' }}</textarea>
+                <textarea class="wmd-input" id="wmd-input" name="content">{{ old('content', $isEditing ? $post->content : '') }}</textarea>
                 <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
             </div>
 
