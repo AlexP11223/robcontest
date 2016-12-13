@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $urlSlug
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $teams
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contest whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contest whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contest whereIsRegistrationFinished($value)
@@ -47,6 +48,15 @@ class Contest extends Model
     }
 
     /**
+     * Returns teams
+     * @return mixed
+     */
+    public function teams() {
+        return $this->hasMany(Team::class);
+    }
+
+    /**
+     * Returns the latest contest
      * @return Contest
      */
     public static function current()
@@ -55,9 +65,10 @@ class Contest extends Model
             ::orderBy('created_at', 'desc')
             ->orderBy('id', 'desc')
             ->first();
-}
+    }
 
     /**
+     * Returns a collection of old contests (before current)
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public static function archived()

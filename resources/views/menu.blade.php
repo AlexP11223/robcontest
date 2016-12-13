@@ -5,12 +5,15 @@
             Information
         </a>
     </div>
-    <div class="user-menu-item">
-        <a href="/" role="button" class="btn btn-primary btn-block">
-            <span class="glyphicon glyphicon-file"></span>
-            Apply
-        </a>
-    </div>
+    @php($currentContest = \App\Models\Contest::current())
+    @if (isset($currentContest) && !$currentContest->isRegistrationFinished)
+        <div class="user-menu-item">
+            <a href="{{ route('apply') }}" role="button" class="btn btn-primary btn-block">
+                <span class="glyphicon glyphicon-file"></span>
+                Apply
+            </a>
+        </div>
+    @endif
 
     @if (Auth::check())
         @if (Auth::user()->hasRole('admin'))

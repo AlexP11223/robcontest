@@ -6,6 +6,7 @@
 /public/js
 /public/fonts
 /public/pagedown
+/public/jquery
 /.idea
 /.vagrant
 Homestead.json

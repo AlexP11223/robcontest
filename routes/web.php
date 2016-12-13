@@ -21,6 +21,9 @@ Route::resource('posts', 'PostsController', ['except' => 'index']);
 
 Route::resource('contests', 'ContestsController');
 
+Route::get('apply', 'TeamsController@create')->name('apply');
+Route::post('apply', 'TeamsController@store');
+
 Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('admin-login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');

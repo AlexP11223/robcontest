@@ -98,8 +98,24 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'team' => [
+            'unique_team_name_in_current_contest' => 'Team with this name already registered.',
+        ],
+        'member1_dob' => [
+            'eligible_age' => 'Sorry, you are not eligible to participate in this contest, only children 7-12 years old are allowed.',
+        ],
+        'member2_dob' => [
+            'eligible_age' => 'Sorry, you are not eligible to participate in this contest, only children 7-12 years old are allowed.',
+        ],
+        'phone' => [
+            'numeric' => 'Enter correct phone number (such as in format 370xxxxxxxx).',
+            'digits_between' => 'Enter correct phone number (such as in format 370xxxxxxxx).',
+        ],
+        'sumo' => [
+            'required_without_all' => 'Choose competitions.',
+        ],
+        'obstacles' => [
+            'required_without_all' => 'Choose competitions.',
         ],
     ],
 
@@ -114,6 +130,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'member1_first_name' => 'team member first name',
+        'member1_last_name' => 'team member last name',
+        'member1_dob' => 'team member date of birth',
+        'member2_first_name' => 'team member first name',
+        'member2_last_name' => 'team member last name',
+        'member2_dob' => 'team member date of birth',
+    ],
 
 ];

@@ -64,4 +64,16 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     protected function viewData($key) {
         return $this->response->original->$key;
     }
+
+    /**
+     * @return $this
+     */
+    protected function assertResponseNot500()
+    {
+        if ($this->response->status() >= 500) {
+            self::fail($this->response->getContent() . "\n\n500 error");
+        }
+
+        return $this;
+    }
 }

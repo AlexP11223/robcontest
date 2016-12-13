@@ -37,6 +37,6 @@ class AddInitialContests extends Migration
      */
     public function down()
     {
-        //
+        DB::table('contests')->delete();
     }
 }

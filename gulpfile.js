@@ -16,6 +16,8 @@ elixir((mix) => {
     mix.sass('app.scss')
        .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/','public/fonts/bootstrap')
        .copy('node_modules/pagedown-editor/wmd-buttons.png','public/pagedown/wmd-buttons.png')
+       .copy('node_modules/jquery-ui-dist/*.min.css','public/jquery/')
+       .copy('node_modules/jquery-ui-dist/images/*.png','public/jquery/images/')
        .webpack(['*.js']) // uses webpack.config.js
        .phpUnit();
 });

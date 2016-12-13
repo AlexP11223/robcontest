@@ -10,7 +10,8 @@ module.exports = {
         login: "./js/login.js",
         user: "./js/user.js",
         post: "./js/post.js",
-        postedit: "./js/postedit.js"
+        postedit: "./js/postedit.js",
+        apply: "./js/apply.js"
     },
     output: {
         path: path.join(__dirname, "public/js"),
@@ -21,5 +22,10 @@ module.exports = {
             filename: "common.js",
             name: "common"
         })
-    ]
+    ],
+    resolve: {
+        alias: {
+            'jquery-ui': 'jquery-ui-dist/jquery-ui.js'
+        }
+    },
 };
