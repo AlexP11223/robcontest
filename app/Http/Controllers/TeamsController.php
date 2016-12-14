@@ -29,7 +29,7 @@ class TeamsController extends Controller
             abort(404);
         }
 
-        return view('contests.apply');
+        return view('contests.teams.apply');
     }
 
     /**
