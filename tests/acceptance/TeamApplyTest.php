@@ -127,7 +127,7 @@ class TeamApplyTest extends TestCase
     }
 
     /** @test */
-    public function trima_input()
+    public function trims_input()
     {
         $contest = factory(Contest::class)->create([
             'isRegistrationFinished' => false
