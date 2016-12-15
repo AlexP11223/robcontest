@@ -4,7 +4,7 @@
         <div class="col-md-9">
             @foreach($team->members as $member)
                 <div>
-                    {{ $member->first_name }} {{ $member->last_name }}, {{ $member->age() }} ({{ $member->dob->format('Y-m-d') }})
+                    {{ $member->first_name }} {{ $member->last_name }}, {{ $member->age() }}
                 </div>
             @endforeach
         </div>
