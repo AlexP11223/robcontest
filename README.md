@@ -17,11 +17,11 @@ During the contest administrator enters each competition/round results, and they
 
 Admin is authenticated using password (by default admin, pass123). The authentication form is accessible by /admin-login URL.
 
-#Development setup
+# Development setup
 
 For development you can either use Homestead virtual machine (via Vagrant) or manually install all needed tools.
 
-##Vagrant
+## Vagrant
 
  1. Install VirtualBox and Vagrant.
  2. Install PHP (just interpreter, server not needed) and Composer. Go to the project root, run `composer install` and `php vendor/bin/homestead make` (for Windows `vendor\\bin\\homestead make`) to generate configuration file (`Homestead.yaml`).
@@ -35,19 +35,19 @@ For development you can either use Homestead virtual machine (via Vagrant) or ma
  4. Run `vagrant up`, this should download, configure and launch the virtual machine. Follow Laravel Homestead and Vagrant documentation if it fails.
  5. Use SSH client (such as Putty on Windows) and private key (should be in `.vagrant/machines/default/virtualbox` by default, or check vagrant output) to connect into it.
 
-##Without Vagrant
+## Without Vagrant
 
 1. Install PHP 7+, MySQL, web server such as Apache or nginx (or a WAMP/LAMP/MAMP package), Composer, Node.js/NPM.
 2. Configure web server to serve `public` folder as its root.
  - Also you can use `php artisan serve` for built-in development web server instead of installing a web server.
 3. Create MySQL databases: `robcontest` (of whatever you configured in `.env` file) and `robcontest-test` (optional, see below). 
 
-##Configuration
+## Configuration
 
  1. Copy and rename `.env.example` file to `.env`, change if needed (database user, address, APP_DEBUG, APP_ENV `local` or `production`). APP_DEBUG and APP_ENV are set to `false` and `production` if not present.
  2. Run `php artisan key:generate` to set key for session encryption (or set manually if you already have it).
  
-##Build
+## Build
 
  1. Run `composer install` to install PHP dependencies.
  2. Run `npm install` (or `yarn`) to install the rest of dependencies.
