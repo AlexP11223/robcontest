@@ -11,7 +11,8 @@ module.exports = {
         user: "./js/user.js",
         post: "./js/post.js",
         postedit: "./js/postedit.js",
-        apply: "./js/apply.js"
+        apply: "./js/apply.js",
+        reviewteams: "./js/reviewteams.js"
     },
     output: {
         path: path.join(__dirname, "public/js"),

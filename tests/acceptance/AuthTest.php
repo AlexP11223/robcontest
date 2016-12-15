@@ -11,6 +11,7 @@ class AuthTest extends TestCase
             array('posts/create', 'Create post'),
             array('posts/1/edit', 'Edit post'),
             array('change-password', 'Change password'),
+            array('contests/robleg-2016/review-teams', 'Review teams'),
         );
     }
 

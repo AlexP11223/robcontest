@@ -23,6 +23,8 @@ Route::resource('contests', 'ContestsController');
 
 Route::get('apply', 'TeamsController@create')->name('apply');
 Route::post('apply', 'TeamsController@store');
+Route::get('contests/{contest}/review-teams', 'TeamsController@reviewTeams')->name('review-teams');
+Route::patch('teams/{team}/{status}', 'TeamsController@setStatus')->where('status', 'approve|deny');
 
 Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('admin-login', 'Auth\LoginController@login');

@@ -25,6 +25,7 @@ class CreateTeamsTable extends Migration
             $table->foreign('contest_id')->references('id')->on('contests')->onDelete('cascade');
             $table->boolean('sumo');
             $table->boolean('obstacles');
+            $table->boolean('approved')->nullable();
             $table->timestamps();
         });
 

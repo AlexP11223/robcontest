@@ -1,0 +1,49 @@
+.team-item {
+  padding: 0;
+}
+
+.team-item-header {
+
+  .row {
+    padding: 10px;
+    margin: 0;
+
+    span {
+      display: inline-block;
+    }
+  }
+}
+
+.team-item-content {
+  padding: 10px;
+}
+
+.active-item {
+  .team-item-header div {
+    background-color: #f5f5f5;
+  }
+}
+
+.team-status {
+  font-weight: bold;
+  float: right;
+
+}
+
+.team-status[data-status=waiting] {
+  color: grey;
+}
+
+.team-status[data-status=denied] {
+  color: red;
+}
+
+.team-status[data-status=approved] {
+  color: forestgreen;
+}
+
+.team-actions {
+  .row {
+    margin-top: 15px;
+  }
+}

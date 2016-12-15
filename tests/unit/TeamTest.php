@@ -20,4 +20,20 @@ class TeamTest extends TestCase
 
         $this->assertCount(2, $team->members);
     }
+
+    /** @test */
+    public function returns_status_text()
+    {
+        $team = factory(Team::class)->make();
+
+        self::assertEquals('waiting', $team->statusText());
+
+        $team->approved = true;
+
+        self::assertEquals('approved', $team->statusText());
+
+        $team->approved = false;
+
+        self::assertEquals('denied', $team->statusText());
+    }
 }

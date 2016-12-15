@@ -18,12 +18,14 @@
     @if (Auth::check())
         @if (Auth::user()->hasRole('admin'))
             <div id="adminMenu">
-                <div class="user-menu-item">
-                    <a href="/" role="button" class="btn btn-primary btn-block">
-                        <span class="glyphicon glyphicon-check"></span>
-                        Review teams
-                    </a>
-                </div>
+                @if (isset($currentContest))
+                    <div class="user-menu-item">
+                        <a href="{{ route('review-teams', [$currentContest->urlSlug]) }}" role="button" class="btn btn-primary btn-block">
+                            <span class="glyphicon glyphicon-check"></span>
+                            Review teams
+                        </a>
+                    </div>
+                @endif
                 <div class="user-menu-item">
                     <a href="{{ route('posts.create') }}" role="button" class="btn btn-primary btn-block">
                         <span class="glyphicon glyphicon-pencil"></span>

@@ -1,17 +1,6 @@
-require('./common');
+const common = require('./common');
 
 const bootbox = require('bootbox');
-
-function showErrorDialog(text) {
-    bootbox.dialog({
-        message: text,
-        buttons: {
-            ok: {
-                label: 'OK'
-            }
-        }
-    });
-}
 
 $('a[data-action="deletePost"]').click(function(event) {
     event.preventDefault();
@@ -47,7 +36,7 @@ $('a[data-action="deletePost"]').click(function(event) {
                             }
                         },
                         error: function (resp) {
-                            showErrorDialog(`Error: ${resp.statusText}. Try reloading page.`);
+                            common.showErrorDialog(`Error: ${resp.statusText}. Try reloading page.`);
                         },
                         complete: function () {
                             loadingIndicator.hide();

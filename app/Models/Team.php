@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $school
  * @property boolean $sumo
  * @property boolean $obstacles
+ * @property boolean $approved
  * @property integer $contest_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -33,6 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Team whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Team whereSumo($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Team whereObstacles($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Team whereApproved($value)
  * @mixin \Eloquent
  */
 class Team extends Model
@@ -63,10 +65,22 @@ class Team extends Model
      * Adds a member to the team
      *
      * @param TeamMember $member
-     * @return mixed
+     * @return $this
      */
     public function addMember($member)
     {
-        return $this->members()->attach($member);
+        $this->members()->attach($member);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function statusText()
+    {
+        if ($this->approved === null) {
+            return 'waiting';
+        }
+        return $this->approved ? 'approved' : 'denied';
     }
 }

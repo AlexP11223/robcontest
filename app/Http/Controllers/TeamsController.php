@@ -13,6 +13,9 @@ class TeamsController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth')->only(['reviewTeams', 'setStatus']);
+        $this->middleware('role:admin')->only(['reviewTeams', 'setStatus']);
+
         $this->middleware('trim');
     }
 
@@ -73,47 +76,25 @@ class TeamsController extends Controller
     }
 
     /**
-     * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Contest $contest
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function reviewTeams(Contest $contest)
     {
-        //
+        return view('contests.teams.review', ['contest' => $contest]);
     }
 
     /**
-     * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Team $team
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function setStatus(Team $team, $status)
     {
-        //
-    }
+        $team->approved = $status == 'approve';
+        $team->save();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $team->statusText();
     }
 }
