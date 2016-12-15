@@ -9,14 +9,16 @@
             @endforeach
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-3">School</label>
-        <div class="col-md-9">
-            <div>
-                {{ $team->school }}
+    @if($team->school)
+        <div class="form-group">
+            <label class="col-md-3">School</label>
+            <div class="col-md-9">
+                <div>
+                    {{ $team->school }}
+                </div>
             </div>
         </div>
-    </div>
+    @endif
     <div class="form-group">
         <label class="col-md-3">Teacher or <br/>accompanying adult</label>
         <div class="col-md-9">
@@ -34,6 +36,19 @@
             <div>
                 {{ $team->phone }}
             </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3">Competitions</label>
+        <div class="col-md-9">
+            <ul class="list-no-indent">
+                @if($team->sumo)
+                    <li>Sumo</li>
+                @endif
+                @if($team->obstacles)
+                    <li>Obstacles course</li>
+                @endif
+            </ul>
         </div>
     </div>
 </div>
