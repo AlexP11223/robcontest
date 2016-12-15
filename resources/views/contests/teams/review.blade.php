@@ -20,25 +20,27 @@
                     <div class="team-item-content" style="display: none">
                         @include('contests.teams.info')
 
-                        <div class="team-actions">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <button data-action="approveTeam" class="btn btn-block btn-success">Approve</button>
+                        @if(!$contest->isRegistrationFinished)
+                            <div class="team-actions">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <button data-action="approveTeam" class="btn btn-block btn-success">Approve</button>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <button data-action="denyTeam" class="btn btn-block btn-danger">Deny</button>
+                                    </div>
                                 </div>
-                                <div class="col-xs-6">
-                                    <button data-action="denyTeam" class="btn btn-block btn-danger">Deny</button>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="loading-indicator" style="display: none">
-                                        <img width="16" height="16" src="/img/ajax-loader.gif"/>
-                                        Sending request...
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="loading-indicator" style="display: none">
+                                            <img width="16" height="16" src="/img/ajax-loader.gif"/>
+                                            Sending request...
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             @endforeach

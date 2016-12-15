@@ -57,6 +57,10 @@ class ReviewTeamsTest extends TestCase
                 ->see($team->members[1]->first_name)
                 ->see($team->members[1]->last_name);
         }
+
+        $this
+            ->seeElement('button[data-action="approveTeam"]')
+            ->seeElement('button[data-action="denyTeam"]');
     }
 
     /** @test */
@@ -95,6 +99,27 @@ class ReviewTeamsTest extends TestCase
             'id' => $team->id,
             'approved' => false
         ]);
+    }
+
+    /** @test */
+    public function can_see_approve_deny_only_during_registration_period()
+    {
+        $contest = factory(Contest::class)->create([
+            'isRegistrationFinished' => true
+        ]);
+        $teams = factory(Team::class, 3)->create([ 'contest_id' => $contest->id ])
+            ->each(function(Team $t) {
+                $t->addMember(factory(\App\Models\TeamMember::class)->create());
+                $t->addMember(factory(\App\Models\TeamMember::class)->create());
+            });
+
+        $this
+            ->actingAs(self::admin())
+            ->visit("contests/$contest->urlSlug/review-teams");
+
+        $this
+            ->dontSeeElement('button[data-action="approveTeam"]')
+            ->dontSeeElement('button[data-action="denyTeam"]');
     }
 
     /** @test */
