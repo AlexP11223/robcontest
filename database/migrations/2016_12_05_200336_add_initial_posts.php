@@ -99,6 +99,19 @@ EOD
             'created_at' => '2016-01-31 17:31:00',
         ]);
 
+        Post::create([
+            'title' => 'RobLeg 2017 registration started',
+            'content' => <<<'EOD'
+Registration for RobLeg 2017 started!
+
+Go to the *Apply* page to fill the application request for your team.
+
+The registration will be closed on **January 20th**.
+EOD
+            ,
+            'created_at' => '2016-12-15 09:15:20',
+        ]);
+
         Post::reguard();
     }
 
