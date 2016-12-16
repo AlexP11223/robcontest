@@ -50,7 +50,7 @@ $factory->define(App\Models\TeamMember::class, function (Faker\Generator $faker)
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\Team::class, function (Faker\Generator $faker) {
     return [
-        'name' => 'Robots ' . $faker->word,
+        'name' => 'Robots ' . $faker->unique->word . $faker->unique->company,
         'teacher_first_name' => $faker->firstName,
         'teacher_last_name' => $faker->lastName,
         'email' => $faker->email,
