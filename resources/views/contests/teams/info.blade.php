@@ -27,17 +27,19 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-3">Contact information</label>
-        <div class="col-md-9">
-            <div>
-                {{ $team->email }}
-            </div>
-            <div>
-                {{ $team->phone }}
+    @if($showPrivateInfo)
+        <div class="form-group">
+            <label class="col-md-3">Contact information</label>
+            <div class="col-md-9">
+                <div>
+                    {{ $team->email }}
+                </div>
+                <div>
+                    {{ $team->phone }}
+                </div>
             </div>
         </div>
-    </div>
+    @endif
     <div class="form-group">
         <label class="col-md-3">Competitions</label>
         <div class="col-md-9">

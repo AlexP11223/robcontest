@@ -55,7 +55,7 @@ class ContestsController extends Controller
      */
     public function show(Contest $contest)
     {
-        return $contest->name;
+        return view('contests.show', ['contest' => $contest, 'teams' => $contest->approvedTeams()]);
     }
 
     /**

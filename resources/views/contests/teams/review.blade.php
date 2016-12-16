@@ -18,7 +18,7 @@
                     </a>
 
                     <div class="team-item-content" style="display: none">
-                        @include('contests.teams.info')
+                        @include('contests.teams.info', ['showPrivateInfo' => true])
 
                         @if(!$contest->isRegistrationFinished)
                             <div class="team-actions">

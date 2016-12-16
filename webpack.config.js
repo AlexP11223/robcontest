@@ -12,7 +12,8 @@ module.exports = {
         post: "./js/post.js",
         postedit: "./js/postedit.js",
         apply: "./js/apply.js",
-        reviewteams: "./js/reviewteams.js"
+        reviewteams: "./js/reviewteams.js",
+        contest: "./js/contest.js"
     },
     output: {
         path: path.join(__dirname, "public/js"),
