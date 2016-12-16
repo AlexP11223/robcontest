@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Contest;
+use App\Models\ObstaclesGame;
 use App\Models\Team;
 use App\Models\TeamMember;
 use Carbon\Carbon;
@@ -22,6 +23,7 @@ class AddInitialContests extends Migration
         Contest::unguard();
         Team::unguard();
         TeamMember::unguard();
+        ObstaclesGame::unguard();
 
         Carbon::setTestNow(Carbon::create(2016, 1, 1));
 
@@ -582,9 +584,23 @@ class AddInitialContests extends Migration
                 'created_at' => '2016-12-16 07:15:20',
             ]));
 
+        $obstaclesTime = [ 30.51, 32.26, 40.68, 25.05, 20.86, 80.71, 29.13, 26.89, 32.11, 86.09, 55.12, 23.56, 33.11, 41.73 ];
+        $ind = 0;
+        foreach ($prevContest->teams as $team) {
+            if ($team->obstacles) {
+                ObstaclesGame::create([
+                    'time' => $obstaclesTime[$ind],
+                    'team_id' => $team->id,
+                    'game_index' => $ind++,
+                    'created_at' => '2016-02-10 09:15:20',
+                ]);
+            }
+        }
+
         Contest::reguard();
         Team::reguard();
         TeamMember::reguard();
+        ObstaclesGame::reguard();
         Carbon::setTestNow();
     }
 
@@ -595,9 +611,10 @@ class AddInitialContests extends Migration
      */
     public function down()
     {
-        DB::table('contests')->delete();
+        DB::table('obstacles_games')->delete();
         DB::table('teams_team_members')->delete();
         DB::table('team_members')->delete();
         DB::table('teams')->delete();
+        DB::table('contests')->delete();
     }
 }
