@@ -1,6 +1,6 @@
 A project created during Software Engineering course in university.
 
-PHP, Laravel.
+PHP, Laravel. Tests/TDD.
 
 # Project description
 
@@ -23,43 +23,48 @@ For development you can either use Homestead virtual machine (via Vagrant) or ma
 
 ## Vagrant
 
- 1. Install VirtualBox and Vagrant.
- 2. Install PHP (just interpreter, server not needed) and Composer. Go to the project root, run `composer install` and `php vendor/bin/homestead make` (for Windows `vendor\\bin\\homestead make`) to generate configuration file (`Homestead.yaml`).
+ 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](https://www.vagrantup.com/downloads.html).
+ 2. Install PHP (just [interpreter](http://php.net/downloads.php), server not needed) and [Composer](https://getcomposer.org/download/). Go to the project root, run `composer install` and `php vendor/bin/homestead make` (for Windows `vendor\\bin\\homestead make`), this will generate configuration file, **Homestead.yaml**.
   - Alternatively, you can follow Laravel Homestead documentation to install Homestead globally, it should not require PHP. https://laravel.com/docs/5.3/homestead
  3. Add `robcontest` and `robcontest-test` databases to Homestead.yaml.
+
  ```
  databases:
      - robcontest
      - robcontest-test
  ```
  4. Run `vagrant up`, this should download, configure and launch the virtual machine. Follow Laravel Homestead and Vagrant documentation if it fails.
- 5. Use SSH client (such as Putty on Windows) and private key (should be in `.vagrant/machines/default/virtualbox` by default, or check vagrant output) to connect into it.
+ 5. Use any SSH client (such as Putty on Windows) and private key (should be in `.vagrant/machines/default/virtualbox` by default, or check vagrant output) to connect into it.
 
 ## Without Vagrant
 
-1. Install PHP 7+, MySQL, web server such as Apache or nginx (or a WAMP/LAMP/MAMP package), Composer, Node.js/NPM.
+1. Install PHP 7+, MySQL, web server such as Apache or nginx (or a WAMP/LAMP/MAMP package), Git, Composer, Node.js/NPM.
 2. Configure web server to serve `public` folder as its root.
  - Also you can use `php artisan serve` for built-in development web server instead of installing a web server.
-3. Create MySQL databases: `robcontest` (of whatever you configured in `.env` file) and `robcontest-test` (optional, see below). 
+3. Create MySQL databases: `robcontest` (or whatever you configured in **.env** file) and `robcontest-test` (optional, see below). 
 
 ## Configuration
 
- 1. Copy and rename `.env.example` file to `.env`, change if needed (database user, address, APP_DEBUG, APP_ENV `local` or `production`). APP_DEBUG and APP_ENV are set to `false` and `production` if not present.
- 2. Run `php artisan key:generate` to set key for session encryption (or set manually if you already have it).
+ 1. Copy and rename **.env.example** file to **.env**, modify if needed (database user, address, APP_DEBUG, APP_ENV `local` or `production`). APP_DEBUG and APP_ENV are set to `false` and `production` if not present.
+ 2. Run `php artisan key:generate` to generate key for session encryption (or set manually if you already have it).
  
 ## Build
 
  1. Run `composer install` to install PHP dependencies.
- 2. Run `npm install` (or `yarn`) to install the rest of dependencies.
- 3. Run `php artisan migrate` to apply database migrations.
+ 2. Run `npm install` (or `yarn`) to install the rest of dependencies. If you are using virtual machine and your host OS is Windows you may need to add `--no-bin-links` flag.
+ 3. Run `php artisan migrate` to apply database migrations. (`php artisan migrate:refresh` can be used to delete all data and reapply migrations)
  5. Run `npm run build` to build frontend (WebPack, SASS, ES6, ...). `npm run prod` builds for "production" (minimized files, etc.). `npm run watch` can be used to rebuild automatically on file changes. 
- 6. Go to http://localhost:8000 (for default Homestead settings or if using `php artisan serve`), it should work.
- 
+ 6. Go to [http://localhost:8000](http://localhost:8000) (for default Homestead settings or if using `php artisan serve`), it should work.
+
+## IDE
+
+If you are using IDE like PHPStorm, you may want to install [Laravel plugin](https://plugins.jetbrains.com/plugin/7532) (and enable it in project settings) and use [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper) (should be already installed via Composer, run `php artisan ide-helper:generate` and `php artisan ide-helper:meta`).
+
 # Tests
 
-Most of the project is covered by automated tests (PHPUnit), tests are executed in all npm scripts described above.
+Most of the code is covered by automated tests (PHPUnit), tests are executed in all npm scripts described above.
 
-Database is required for all tests, by default it uses MySQL with name `robcontest_test`, you can also use in-memory SQLite database by changing `DB_CONNECTION` to `sqlite` in `phpunit.xml` (much slower because cannot use transactions).
+Database is required for all tests, by default it uses MySQL database with name `robcontest_test`, you can also use in-memory SQLite database by changing `DB_CONNECTION` to `sqlite` in `phpunit.xml` (much slower because cannot use transactions).
 
 Name and user of testing MySQL database can be changed by adding `DB_DATABASE_TEST`, `DB_USERNAME_TEST`, `DB_PASSWORD_TEST` to `.env`, by default username and password are the same as for the main database, set in `DB_USERNAME`/`DB_PASSWORD`.
  
