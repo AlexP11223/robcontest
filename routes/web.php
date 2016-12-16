@@ -20,11 +20,14 @@ Route::get('info', function() {
 Route::resource('posts', 'PostsController', ['except' => 'index']);
 
 Route::resource('contests', 'ContestsController');
+Route::get('contests/{contest}/teams', 'ContestsController@indexTeams');
 
 Route::get('apply', 'TeamsController@create')->name('apply');
 Route::post('apply', 'TeamsController@store');
 Route::get('contests/{contest}/review-teams', 'TeamsController@reviewTeams')->name('review-teams');
 Route::patch('teams/{team}/{status}', 'TeamsController@setStatus')->where('status', 'approve|deny');
+
+Route::patch('contests/{contest}/start', 'ContestsController@start')->name('start-contest');
 
 Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('admin-login', 'Auth\LoginController@login');

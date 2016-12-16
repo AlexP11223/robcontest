@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $teams
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ObstaclesGame[] $obstaclesGames
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contest whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contest whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contest whereIsRegistrationFinished($value)
@@ -51,8 +52,26 @@ class Contest extends Model
      * Returns teams
      * @return mixed
      */
-    public function teams() {
+    public function teams()
+    {
         return $this->hasMany(Team::class);
+    }
+
+    public function obstaclesGames()
+    {
+        return $this
+            ->hasManyThrough(ObstaclesGame::class, Team::class)
+            ->orderBy('game_index', 'asc')
+            ->with('team');
+    }
+
+    public function sumoGames()
+    {
+        return $this
+            ->hasManyThrough(SumoGame::class, Team::class, 'contest_id', 'team1_id')
+            ->orderBy('round_index', 'asc')
+            ->orderBy('game_index', 'asc')
+            ->with('team1', 'team2');
     }
 
     /**
@@ -79,5 +98,12 @@ class Contest extends Model
             ->get();
         $contests->shift();
         return $contests;
+    }
+
+    public function approvedTeams()
+    {
+        return $this->teams()
+            ->whereApproved(true)
+            ->get();
     }
 }

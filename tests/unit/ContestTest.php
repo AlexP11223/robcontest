@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Contest;
+use App\Models\Team;
 
 class ContestTest extends TestCase
 {
@@ -42,5 +43,34 @@ class ContestTest extends TestCase
         ]);
 
         $this->assertEquals('robleg-2001', $contest->urlSlug);
+    }
+
+    /** @test */
+    public function returns_approved_teams()
+    {
+        $contest = factory(Contest::class)->create([
+            'isRegistrationFinished' => false
+        ]);
+        $approvedTeams = factory(Team::class, 2)->create([
+            'contest_id' => $contest->id,
+            'approved' => true,
+        ]);
+        $unapprovedTeams = [
+            factory(Team::class)->create([
+                'contest_id' => $contest->id,
+                'approved' => false,
+            ]),
+            factory(Team::class)->create([
+                'contest_id' => $contest->id,
+            ]),
+        ];
+
+        $result = $contest->approvedTeams();
+
+        self::assertCount($approvedTeams->count(), $result);
+
+        foreach ($approvedTeams as $approvedTeam) {
+            $this->assertTrue($result->contains('id', $approvedTeam->id));
+        }
     }
 }
