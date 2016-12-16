@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateContest;
 use App\Models\Contest;
 use App\Services\ContestService;
 use Illuminate\Http\Request;
@@ -27,18 +28,23 @@ class ContestsController extends Controller
      */
     public function create()
     {
-        //
+        return view('contests.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateContest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateContest $request)
     {
-        //
+        Contest::create([
+            'name' => $request['contestName'],
+            'isRegistrationFinished' => false
+        ]);
+
+        return Redirect::to('/');
     }
 
     /**

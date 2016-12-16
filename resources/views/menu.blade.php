@@ -32,6 +32,12 @@
                         Add post
                     </a>
                 </div>
+                    <div class="user-menu-item">
+                        <a href="{{ route('contests.create') }}" role="button" class="btn btn-primary btn-block">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            Create contest
+                        </a>
+                    </div>
             </div>
         @endif
 
