@@ -61,3 +61,10 @@ $factory->define(App\Models\Team::class, function (Faker\Generator $faker) {
         'contest_id' => factory(\App\Models\Contest::class)->create()->id,
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\ObstaclesGame::class, function (Faker\Generator $faker) {
+    return [
+        'time' => $faker->randomFloat(2, 10, 120),
+    ];
+});

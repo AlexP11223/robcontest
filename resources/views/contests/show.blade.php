@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <link rel="stylesheet" href="/jquery/jquery.bracket.min.css"/>
+
     <h2>{{ $contest->name }}</h2>
 
     <div>
@@ -20,6 +22,21 @@
             @endforeach
         </div>
     </div>
+
+    <div class="row" id="obstacles">
+        <div class="col-md-7">
+            <h3>Obstacles</h3>
+            <table class="table table-bordered table-fluid" id="obstaclesRoundTable">
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script>
+        window.contestId = '{{ $contest->urlSlug }}';
+    </script>
 
     <script src="/js/contest.js"></script>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Utils\DynamicHiddenVisible;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -39,6 +40,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Team extends Model
 {
+    use DynamicHiddenVisible;
+
     protected $fillable = [
         'name', 'school', 'email', 'phone', 'teacher_first_name', 'teacher_last_name', 'sumo', 'obstacles', 'contest_id'
     ];
@@ -82,5 +85,12 @@ class Team extends Model
             return 'waiting';
         }
         return $this->approved ? 'approved' : 'denied';
+    }
+
+    public function obstaclesGames()
+    {
+        return $this
+            ->hasMany(ObstaclesGame::class)
+            ->orderBy('game_index', 'asc');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Utils\DynamicHiddenVisible;
 
 /**
  * Represents one obstacles course game, that is time to reach finish of one team
@@ -24,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ObstaclesGame extends Model
 {
+    use DynamicHiddenVisible;
+
     protected $fillable = [
         'game_index', 'time', 'team_id'
     ];

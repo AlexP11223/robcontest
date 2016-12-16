@@ -21,6 +21,7 @@ Route::resource('posts', 'PostsController', ['except' => 'index']);
 
 Route::resource('contests', 'ContestsController');
 Route::get('contests/{contest}/teams', 'ContestsController@indexTeams');
+Route::get('contests/{contest}/obstacles', 'ContestsController@indexObstacles');
 
 Route::get('apply', 'TeamsController@create')->name('apply');
 Route::post('apply', 'TeamsController@store');

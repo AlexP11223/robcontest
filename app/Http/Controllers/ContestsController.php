@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateContest;
 use App\Models\Contest;
+use App\Models\ObstaclesGame;
+use App\Models\Team;
 use App\Services\ContestService;
 use Illuminate\Http\Request;
 use Redirect;
@@ -16,8 +18,8 @@ class ContestsController extends Controller
     {
         $this->contestService = $contestService;
 
-        $this->middleware('auth')->except(['show']);
-        $this->middleware('role:admin')->except(['show']);
+        $this->middleware('auth')->except(['show', 'indexObstacles']);
+        $this->middleware('role:admin')->except(['show', 'indexObstacles']);
     }
 
 
@@ -66,6 +68,22 @@ class ContestsController extends Controller
     public function indexTeams(Contest $contest)
     {
         return $contest->teams;
+    }
+
+    /**
+     *
+     * @param Contest $contest
+     * @return \Illuminate\Http\Response|string
+     */
+    public function indexObstacles(Contest $contest)
+    {
+        // TODO: refactor this weird shit maybe
+        ObstaclesGame::setStaticVisible(['game_index', 'time', 'team' ]);
+        Team::setStaticVisible(['name' ]);
+
+        $obstaclesGames = $contest->obstaclesGames;
+
+        return $obstaclesGames;
     }
 
     public function start(Request $request, Contest $contest)
