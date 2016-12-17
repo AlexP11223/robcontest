@@ -2,6 +2,7 @@
 
 use App\Models\Contest;
 use App\Models\ObstaclesGame;
+use App\Models\SumoGame;
 use App\Models\Team;
 use App\Models\TeamMember;
 use Carbon\Carbon;
@@ -24,6 +25,7 @@ class AddInitialContests extends Migration
         Team::unguard();
         TeamMember::unguard();
         ObstaclesGame::unguard();
+        SumoGame::unguard();
 
         Carbon::setTestNow(Carbon::create(2016, 1, 1));
 
@@ -512,6 +514,31 @@ class AddInitialContests extends Migration
                 'created_at' => '2016-12-16 07:15:20',
             ]));
         Team::create([
+            'name' => 'Cool Robots',
+            'school' => 'School 1',
+            'email' => 'john.smith123@gmail.com',
+            'phone' => '37012345678',
+            'teacher_first_name' => 'John',
+            'teacher_last_name' => 'Smith',
+            'sumo' => true,
+            'obstacles' => true,
+            'contest_id' => $currContest->id,
+            'approved' => true,
+            'created_at' => '2016-12-16 07:15:20',
+        ])
+            ->addMember(TeamMember::create([
+                'first_name' => 'Ben',
+                'last_name' => 'Smith',
+                'dob' => Carbon::today()->subYears(9)->subDays(55),
+                'created_at' => '2016-12-16 07:15:20',
+            ]))
+            ->addMember(TeamMember::create([
+                'first_name' => 'John',
+                'last_name' => 'Gray',
+                'dob' => Carbon::today()->subYears(10)->subDays(315),
+                'created_at' => '2016-12-16 07:15:20',
+            ]));
+        Team::create([
             'name' => 'Robots.Pro',
             'email' => 'natt1@gmail.com',
             'phone' => '3708936676',
@@ -584,7 +611,7 @@ class AddInitialContests extends Migration
                 'created_at' => '2016-12-16 07:15:20',
             ]));
 
-        $obstaclesTime = [ 30.51, 32.26, 40.68, 25.05, 20.86, 80.71, 29.13, 26.89, 32.11, 86.09, 55.12, 23.56, 33.11, 41.73 ];
+        $obstaclesTime = [ 30.51, 32.26, 40.68, 20.05, 29.86, 80.71, 25.13, 26.89, 32.11, 86.09, 55.12, 23.56, 33.11, 41.73 ];
         $ind = 0;
         foreach ($prevContest->teams as $team) {
             if ($team->obstacles) {
@@ -597,10 +624,67 @@ class AddInitialContests extends Migration
             }
         }
 
+        $ind = 0;
+        $sumoTeams = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ];
+        $sumoWinners = [ 0, 3, 4, 7, 8, 10, 12, 14 ];
+        for ($i = 0; $i < count($sumoTeams); $i += 2) {
+            SumoGame::create([
+                'team1_id' => $prevContest->teams[$sumoTeams[$i]]->id,
+                'team2_id' => $prevContest->teams[$sumoTeams[$i + 1]]->id,
+                'winner_team_id' => $prevContest->teams[$sumoWinners[$ind]]->id,
+                'round_index' => 0,
+                'game_index' => $ind++,
+                'created_at' => '2016-02-10 09:15:20',
+            ]);
+        }
+
+        $ind = 0;
+        $sumoTeams = $sumoWinners;
+        $sumoWinners = [ 0, 7, 8, 14 ];
+        for ($i = 0; $i < count($sumoTeams); $i += 2) {
+            SumoGame::create([
+                'team1_id' => $prevContest->teams[$sumoTeams[$i]]->id,
+                'team2_id' => $prevContest->teams[$sumoTeams[$i + 1]]->id,
+                'winner_team_id' => $prevContest->teams[$sumoWinners[$ind]]->id,
+                'round_index' => 1,
+                'game_index' => $ind++,
+                'created_at' => '2016-02-10 09:15:20',
+            ]);
+        }
+
+        $ind = 0;
+        $sumoTeams = $sumoWinners;
+        $sumoWinners = [ 0, 14 ];
+        for ($i = 0; $i < count($sumoTeams); $i += 2) {
+            SumoGame::create([
+                'team1_id' => $prevContest->teams[$sumoTeams[$i]]->id,
+                'team2_id' => $prevContest->teams[$sumoTeams[$i + 1]]->id,
+                'winner_team_id' => $prevContest->teams[$sumoWinners[$ind]]->id,
+                'round_index' => 2,
+                'game_index' => $ind++,
+                'created_at' => '2016-02-10 09:15:20',
+            ]);
+        }
+
+        $ind = 0;
+        $sumoTeams = [ 0, 14, 7, 8];
+        $sumoWinners = [ 14, 8];
+        for ($i = 0; $i < count($sumoTeams); $i += 2) {
+            SumoGame::create([
+                'team1_id' => $prevContest->teams[$sumoTeams[$i]]->id,
+                'team2_id' => $prevContest->teams[$sumoTeams[$i + 1]]->id,
+                'winner_team_id' => $prevContest->teams[$sumoWinners[$ind]]->id,
+                'round_index' => 3,
+                'game_index' => $ind++,
+                'created_at' => '2016-02-10 09:15:20',
+            ]);
+        }
+
         Contest::reguard();
         Team::reguard();
         TeamMember::reguard();
         ObstaclesGame::reguard();
+        SumoGame::reguard();
         Carbon::setTestNow();
     }
 
