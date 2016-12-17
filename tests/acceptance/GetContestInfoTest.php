@@ -50,7 +50,7 @@ class GetContestInfoTest extends TestCase
         $ind = 0;
         $teams = factory(Team::class, 2)->create([
             'contest_id' => $contest->id
-        ])->each(function(Team $t) use($ind) {
+        ])->each(function(Team $t) use(&$ind) {
             factory(ObstaclesGame::class)->create([
                 'team_id' => $t->id,
                 'game_index' => $ind++,

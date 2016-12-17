@@ -123,3 +123,8 @@ function loadSumoResult() {
 
 loadObstaclesResult();
 loadSumoResult();
+
+module.exports = {
+    loadObstaclesResult: loadObstaclesResult,
+    loadSumoResult: loadSumoResult,
+};

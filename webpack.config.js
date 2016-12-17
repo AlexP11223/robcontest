@@ -13,7 +13,8 @@ module.exports = {
         postedit: "./js/postedit.js",
         apply: "./js/apply.js",
         reviewteams: "./js/reviewteams.js",
-        contest: "./js/contest.js"
+        contest: "./js/contest.js",
+        contestedit: "./js/contestedit.js"
     },
     output: {
         path: path.join(__dirname, "public/js"),
