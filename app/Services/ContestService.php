@@ -35,10 +35,26 @@ class ContestService
 
     public function startContest(Contest $contest, $orderedTeamIds)
     {
+        $teams = $contest->approvedTeams();
+
+        $orderedTeamIds = collect($orderedTeamIds);
+
+        $obstaclesTeamIds = $orderedTeamIds->filter(function($id) use($teams) {
+            return $teams->first(function($t) use($id) {
+                return $t->id == $id && $t->obstacles;
+            }) != null;
+        })->values();
+
+        $sumoTeamIds = $orderedTeamIds->filter(function($id) use($teams) {
+            return $teams->first(function($t) use($id) {
+                return $t->id == $id && $t->sumo;
+            }) != null;
+        })->values();
+
         $contest->isRegistrationFinished = true;
         $contest->save();
 
-        $this->createObstaclesGames($orderedTeamIds);
-        $this->createInitialSumoRounds($orderedTeamIds);
+        $this->createObstaclesGames($obstaclesTeamIds);
+        $this->createInitialSumoRounds($sumoTeamIds);
     }
 }

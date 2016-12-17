@@ -66,6 +66,57 @@ class StartContestTest extends TestCase
     }
 
     /** @test */
+    public function should_create_only_chosen_competitions()
+    {
+        $contest = factory(Contest::class)->create([
+            'isRegistrationFinished' => false
+        ]);
+        $teams = factory(Team::class, 4)->create([
+            'contest_id' => $contest->id,
+            'approved' => true,
+        ]);
+
+        $teams[1]->obstacles = false;
+        $teams[1]->save();
+        $teams[2]->sumo = false;
+        $teams[2]->save();
+
+        $teamOrder = [];
+        foreach ($teams as $team) {
+            $teamOrder[] = $team->id;
+        }
+
+        $this
+            ->actingAs(self::admin())
+            ->patch("contests/$contest->urlSlug/start", ['teams' => $teamOrder ]);
+
+        $this
+            ->assertResponseNot500()
+            ->assertRedirectedTo("contests/$contest->urlSlug");
+
+        self::assertCount(3, $contest->obstaclesGames);
+
+        $this->dontSeeInDatabase('obstacles_games', [
+            'team_id' => $teams[1]->id
+        ]);
+
+        self::assertCount(2, $contest->sumoGames);
+
+        $this->seeInDatabase('sumo_games', [
+            'team1_id' => $teams[0]->id,
+            'team2_id' => $teams[1]->id,
+            'game_index' => 0,
+            'round_index' => 0,
+        ]);
+        $this->seeInDatabase('sumo_games', [
+            'team1_id' => $teams[3]->id,
+            'team2_id' => null,
+            'game_index' => 1,
+            'round_index' => 0,
+        ]);
+    }
+
+    /** @test */
     public function users_cannot_start_contest()
     {
         $contest = factory(Contest::class)->create([
