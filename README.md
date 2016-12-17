@@ -6,12 +6,12 @@ PHP, Laravel. Tests/TDD.
 
 RobLeg is an annual contest for teams of two 7-12 years old children. They construct a LEGO robot and participate in several competitions.
 
-- Sumo: Two robots try to force each other out of the ring (circle). The competition consists of several rounds, winners go to the next round until no more teams left.
+- Sumo: Two robots try to force each other out of the ring (circle). The competition consists of several rounds, winners go to the next round until no more teams left. (single elimination tournament)
 - Obstacles course: Robots ride through a path avoiding obstacles, walls. Teams that arrive to the finish faster win.
 
 A website is needed to display current and old contests results as well as news/reports, photos, information (rules, description, …).
 
-During the contest period it allows teams to apply (by sending team information and teacher/curator contact info), either to one or both of the competitions.
+During the contest period it allows teams to apply (by sending team information and teacher/accompanying adult contact info), either to one or both of the competitions.
 
 During the contest administrator enters each competition/round results, and they are available to the users.
 
