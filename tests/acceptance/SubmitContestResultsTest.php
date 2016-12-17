@@ -13,7 +13,7 @@ class SubmitContestResultsTest extends TestCase
         parent::setUp();
 
         $this->contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => true
+            'registration_finished' => true
         ]);
         $ind = 0;
         factory(Team::class, 2)->create([

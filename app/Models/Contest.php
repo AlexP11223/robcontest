@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $id
  * @property string $name
- * @property boolean $isRegistrationFinished
+ * @property boolean $registration_finished
  * @property string $urlSlug
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -32,7 +32,7 @@ class Contest extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'isRegistrationFinished'
+        'name', 'registration_finished'
     ];
 
     protected static function boot()

@@ -34,7 +34,7 @@ $factory->define(App\Models\Role::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Contest::class, function (Faker\Generator $faker) {
     return [
         'name' => 'RobLeg ' . $faker->unique->numberBetween(1970, 2000),
-        'isRegistrationFinished' => false,
+        'registration_finished' => false,
     ];
 });
 

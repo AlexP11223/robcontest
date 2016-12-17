@@ -20,7 +20,7 @@
                     <div class="team-item-content" style="display: none">
                         @include('contests.teams.info', ['showPrivateInfo' => true])
 
-                        @if(!$contest->isRegistrationFinished)
+                        @if(!$contest->registration_finished)
                             <div class="team-actions">
                                 <div class="row">
                                     <div class="col-xs-6">
@@ -46,7 +46,7 @@
             @endforeach
         </div>
 
-        @if(!$contest->isRegistrationFinished)
+        @if(!$contest->registration_finished)
             <p>
                 <a class="lead dotted-link" href="javascript:void(0)" id="startContestShowBtn">Finish registration/start contest</a>
             </p>

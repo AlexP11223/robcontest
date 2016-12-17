@@ -15,7 +15,7 @@ class CreateContestsTable extends Migration
         Schema::create('contests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->boolean('isRegistrationFinished');
+            $table->boolean('registration_finished');
             $table->string('urlSlug')->unique();
             $table->timestamps();
         });

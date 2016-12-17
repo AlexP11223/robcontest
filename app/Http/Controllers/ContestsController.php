@@ -44,7 +44,7 @@ class ContestsController extends Controller
     {
         Contest::create([
             'name' => $request['contestName'],
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
 
         return Redirect::to('/');

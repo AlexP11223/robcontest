@@ -31,7 +31,7 @@ class ReviewTeamsTest extends TestCase
     public function can_see_team_list()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
         $teams = factory(Team::class, 3)->create([ 'contest_id' => $contest->id ])
                 ->each(function(Team $t) {
@@ -105,7 +105,7 @@ class ReviewTeamsTest extends TestCase
     public function can_see_approve_deny_only_during_registration_period()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => true
+            'registration_finished' => true
         ]);
         $teams = factory(Team::class, 3)->create([ 'contest_id' => $contest->id ])
             ->each(function(Team $t) {

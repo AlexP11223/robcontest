@@ -46,7 +46,7 @@ class CreateContestTest extends TestCase
 
         $this->seeInDatabase('contests', [
             'name' => 'RobLeg 2001',
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
 
         $this

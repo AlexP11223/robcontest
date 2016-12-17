@@ -31,12 +31,12 @@ class AddInitialContests extends Migration
 
         $prevContest = Contest::create([
             'name' => 'RobLeg 2016',
-            'isRegistrationFinished' => true,
+            'registration_finished' => true,
             'created_at' => '2016-01-01 07:15:20',
         ]);
         $currContest = Contest::create([
             'name' => 'RobLeg 2017',
-            'isRegistrationFinished' => false,
+            'registration_finished' => false,
             'created_at' => '2016-12-15 09:15:20',
         ]);
 

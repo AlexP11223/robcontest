@@ -28,7 +28,7 @@ class TeamsController extends Controller
     {
         $contest = Contest::current();
 
-        if ($contest->isRegistrationFinished) {
+        if ($contest->registration_finished) {
             abort(404);
         }
 
@@ -45,7 +45,7 @@ class TeamsController extends Controller
     {
         $contest = Contest::current();
 
-        if ($contest->isRegistrationFinished) {
+        if ($contest->registration_finished) {
             abort(403);
         }
 

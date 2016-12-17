@@ -51,7 +51,7 @@ class ContestService
             }) != null;
         })->values();
 
-        $contest->isRegistrationFinished = true;
+        $contest->registration_finished = true;
         $contest->save();
 
         $this->createObstaclesGames($obstaclesTeamIds);

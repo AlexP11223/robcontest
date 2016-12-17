@@ -9,7 +9,7 @@ class SeeContestTest extends TestCase
     public function can_see_team_list()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => true
+            'registration_finished' => true
         ]);
         $teams = factory(Team::class, 3)->create([
             'contest_id' => $contest->id,

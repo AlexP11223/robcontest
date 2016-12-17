@@ -33,7 +33,7 @@ class TeamApplyTest extends TestCase
     public function should_see_apply_link_when_registration_opened()
     {
         factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
 
         $this->visit('/');
@@ -45,7 +45,7 @@ class TeamApplyTest extends TestCase
     public function should_not_see_apply_link_when_registration_finished()
     {
         factory(Contest::class)->create([
-            'isRegistrationFinished' => true
+            'registration_finished' => true
         ]);
 
         $this->visit('/');
@@ -57,7 +57,7 @@ class TeamApplyTest extends TestCase
     public function apply_page_should_not_work_when_registration_finished()
     {
         factory(Contest::class)->create([
-            'isRegistrationFinished' => true
+            'registration_finished' => true
         ]);
 
         $this
@@ -69,7 +69,7 @@ class TeamApplyTest extends TestCase
     public function cannot_apply_when_registration_finished()
     {
         factory(Contest::class)->create([
-            'isRegistrationFinished' => true
+            'registration_finished' => true
         ]);
 
         $this
@@ -81,7 +81,7 @@ class TeamApplyTest extends TestCase
     public function can_apply()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
 
         $this->visit('apply');
@@ -130,7 +130,7 @@ class TeamApplyTest extends TestCase
     public function trims_input()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
 
         $this->visit('apply');
@@ -160,7 +160,7 @@ class TeamApplyTest extends TestCase
     public function can_apply_without_optional_params()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
 
         $this->visit('apply');
@@ -191,7 +191,7 @@ class TeamApplyTest extends TestCase
     public function cannot_apply_without_valid_input()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
 
         $this->visit('apply');
@@ -221,7 +221,7 @@ class TeamApplyTest extends TestCase
     public function cannot_apply_if_not_eligible_agw()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
 
         $data = $this->validInput;
@@ -247,7 +247,7 @@ class TeamApplyTest extends TestCase
     public function cannot_apply_if_team_already_exists_in_this_contest()
     {
         factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
 
         $data = $this->validInput;
@@ -283,7 +283,7 @@ class TeamApplyTest extends TestCase
 
 
         factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
 
         $this->visit('apply');

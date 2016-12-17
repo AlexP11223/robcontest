@@ -40,7 +40,7 @@ class ContestTest extends TestCase
     {
         $contest = Contest::create([
             'name' => 'RobLeg 2001',
-            'isRegistrationFinished' => false,
+            'registration_finished' => false,
         ]);
 
         $this->assertEquals('robleg-2001', $contest->urlSlug);
@@ -50,7 +50,7 @@ class ContestTest extends TestCase
     public function returns_approved_teams()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
         $approvedTeams = factory(Team::class, 2)->create([
             'contest_id' => $contest->id,
@@ -79,7 +79,7 @@ class ContestTest extends TestCase
     public function returns_sumo_round_indices()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => true
+            'registration_finished' => true
         ]);
         $team = factory(Team::class)->create([
             'contest_id' => $contest->id,

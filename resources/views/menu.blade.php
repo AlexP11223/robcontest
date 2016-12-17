@@ -6,7 +6,7 @@
         </a>
     </div>
     @php($currentContest = \App\Models\Contest::current())
-    @if (isset($currentContest) && !$currentContest->isRegistrationFinished)
+    @if (isset($currentContest) && !$currentContest->registration_finished)
         <div class="user-menu-item">
             <a href="{{ route('apply') }}" role="button" class="btn btn-primary btn-block">
                 <span class="glyphicon glyphicon-file"></span>

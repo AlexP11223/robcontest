@@ -9,7 +9,7 @@ class StartContestTest extends TestCase
     public function can_start_contest()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
         $approvedTeams = factory(Team::class, 4)->create([
             'contest_id' => $contest->id,
@@ -37,7 +37,7 @@ class StartContestTest extends TestCase
 
         $this->seeInDatabase('contests', [
             'id' => $contest->id,
-            'isRegistrationFinished' => true
+            'registration_finished' => true
         ]);
 
         self::assertCount($approvedTeams->count(), $contest->obstaclesGames);
@@ -69,7 +69,7 @@ class StartContestTest extends TestCase
     public function should_create_only_chosen_competitions()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
         $teams = factory(Team::class, 4)->create([
             'contest_id' => $contest->id,
@@ -120,7 +120,7 @@ class StartContestTest extends TestCase
     public function users_cannot_start_contest()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
         $approvedTeams = factory(Team::class, 4)->create([
             'contest_id' => $contest->id
@@ -133,7 +133,7 @@ class StartContestTest extends TestCase
 
         $this->seeInDatabase('contests', [
             'id' => $contest->id,
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
     }
 
@@ -141,7 +141,7 @@ class StartContestTest extends TestCase
     public function can_see_start_contest_form()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => false
+            'registration_finished' => false
         ]);
         $teams = factory(Team::class, 3)->create([ 'contest_id' => $contest->id ])
             ->each(function(Team $t) {
@@ -161,7 +161,7 @@ class StartContestTest extends TestCase
     public function can_see_start_contest_form_only_during_registration_period()
     {
         $contest = factory(Contest::class)->create([
-            'isRegistrationFinished' => true
+            'registration_finished' => true
         ]);
         $teams = factory(Team::class, 3)->create([ 'contest_id' => $contest->id ])
             ->each(function(Team $t) {
