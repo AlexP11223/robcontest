@@ -22,7 +22,7 @@ function loadObstaclesResult() {
             if (!game.time) {
                 allCompleted = false;
             }
-            tblBodyHtml += `<tr><th>${game.team.name}</th><td>${game.time}</td></tr>`;
+            tblBodyHtml += `<tr><th>${game.team.name}</th><td>${game.time ? game.time : ''}</td></tr>`;
         });
         tbody.html(tblBodyHtml);
 
