@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Utils\DynamicHiddenVisible;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -30,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SumoGame extends Model
 {
+    use DynamicHiddenVisible;
+
     protected $fillable = [
         'game_index', 'round_index', 'team1_id', 'team2_id'
     ];

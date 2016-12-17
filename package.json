@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "bootbox": "^4.4.0",
+    "jquery-bracket": "^0.11.0",
     "jquery-ui-dist": "^1.12.1",
     "pagedown": "^1.1.0",
     "pagedown-editor": "^0.0.9"

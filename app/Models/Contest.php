@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $teams
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ObstaclesGame[] $obstaclesGames
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SumoGame[] $sumoGames
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contest whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contest whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Contest whereIsRegistrationFinished($value)
@@ -71,7 +72,21 @@ class Contest extends Model
             ->hasManyThrough(SumoGame::class, Team::class, 'contest_id', 'team1_id')
             ->orderBy('round_index', 'asc')
             ->orderBy('game_index', 'asc')
-            ->with('team1', 'team2');
+            ->with('team1', 'team2', 'winner');
+    }
+
+    /**
+     * @return int[]
+     */
+    public function sumoRoundIndices() {
+        return $this->hasManyThrough(SumoGame::class, Team::class, 'contest_id', 'team1_id')
+            ->select(['round_index'])
+            ->distinct()
+            ->orderBy('round_index', 'asc')
+            ->get()
+            ->map(function($g) {
+                return $g->round_index;
+            });
     }
 
     /**
@@ -100,6 +115,9 @@ class Contest extends Model
         return $contests;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function approvedTeams()
     {
         return $this->teams()

@@ -9,3 +9,23 @@
 .winner3-row {
   background-color: #C07122;
 }
+
+div.jQBracket .team {
+  width: 110px !important;
+}
+
+div.jQBracket .team div.label {
+  font-weight: normal;
+  font-size: 84%;
+  text-align: left;
+  color: #000;
+  width: 80px !important;
+}
+
+.bubble.fourth {
+  display: none;
+}
+
+#sumoTree {
+  margin-bottom: 15px;
+}

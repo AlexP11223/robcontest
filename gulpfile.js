@@ -18,6 +18,7 @@ elixir((mix) => {
        .copy('node_modules/pagedown-editor/wmd-buttons.png','public/pagedown/wmd-buttons.png')
        .copy('node_modules/jquery-ui-dist/*.min.css','public/jquery/')
        .copy('node_modules/jquery-ui-dist/images/*.png','public/jquery/images/')
+       .copy('node_modules/jquery-bracket/dist/*.min.css','public/jquery/')
        .webpack(['*.js']) // uses webpack.config.js
        .phpUnit();
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateContest;
 use App\Models\Contest;
 use App\Models\ObstaclesGame;
+use App\Models\SumoGame;
 use App\Models\Team;
 use App\Services\ContestService;
 use Illuminate\Http\Request;
@@ -18,8 +19,8 @@ class ContestsController extends Controller
     {
         $this->contestService = $contestService;
 
-        $this->middleware('auth')->except(['show', 'indexObstacles']);
-        $this->middleware('role:admin')->except(['show', 'indexObstacles']);
+        $this->middleware('auth')->except(['show', 'indexObstacles', 'indexSumo']);
+        $this->middleware('role:admin')->except(['show', 'indexObstacles', 'indexSumo']);
     }
 
 
@@ -81,9 +82,21 @@ class ContestsController extends Controller
         ObstaclesGame::setStaticVisible(['game_index', 'time', 'team' ]);
         Team::setStaticVisible(['name' ]);
 
-        $obstaclesGames = $contest->obstaclesGames;
+        return $contest->obstaclesGames;
+    }
 
-        return $obstaclesGames;
+    /**
+     *
+     * @param Contest $contest
+     * @return \Illuminate\Http\Response|string
+     */
+    public function indexSumo(Contest $contest)
+    {
+        // TODO: refactor this weird shit maybe
+        SumoGame::setStaticVisible(['game_index', 'round_index', 'team1', 'team2', 'winner' ]);
+        Team::setStaticVisible(['name' ]);
+
+        return $contest->sumoGames;
     }
 
     public function start(Request $request, Contest $contest)

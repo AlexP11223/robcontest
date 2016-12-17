@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Contest;
+use App\Models\SumoGame;
 use App\Models\Team;
 
 class ContestTest extends TestCase
@@ -70,7 +71,36 @@ class ContestTest extends TestCase
         self::assertCount($approvedTeams->count(), $result);
 
         foreach ($approvedTeams as $approvedTeam) {
-            $this->assertTrue($result->contains('id', $approvedTeam->id));
+            self::assertTrue($result->contains('id', $approvedTeam->id));
+        }
+    }
+
+    /** @test */
+    public function returns_sumo_round_indices()
+    {
+        $contest = factory(Contest::class)->create([
+            'isRegistrationFinished' => true
+        ]);
+        $team = factory(Team::class)->create([
+            'contest_id' => $contest->id,
+        ]);
+        for ($i = 0; $i < 3; $i++) {
+            for ($j = 0; $j < 2; $j++) {
+                SumoGame::create([
+                    'team1_id' => $team->id,
+                    'team2_id' => $team->id,
+                    'round_index' => $i,
+                    'game_index' => $j,
+                ]);
+            }
+        }
+
+        $indices = $contest->sumoRoundIndices();
+
+        self::assertCount(3, $indices);
+
+        for ($i = 0; $i < 3; $i++) {
+            self::assertEquals($i, $indices[$i]);
         }
     }
 }

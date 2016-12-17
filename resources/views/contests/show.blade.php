@@ -23,6 +23,13 @@
         </div>
     </div>
 
+    <div id="sumo">
+        <h3>Sumo</h3>
+
+        <div id="sumoTree"></div>
+
+    </div>
+
     <div class="row" id="obstacles">
         <div class="col-md-7">
             <h3>Obstacles</h3>
