@@ -29,3 +29,16 @@ div.jQBracket .team div.label {
 #sumoTree {
   margin-bottom: 15px;
 }
+
+.sumo-input-separator {
+  vertical-align: middle;
+  padding-top: 7px;
+}
+
+.sumo-form, .obstacles-form {
+  @media (max-width: 768px) {
+    button[type=submit] {
+      margin-top: 10px;
+    }
+  }
+}

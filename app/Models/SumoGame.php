@@ -51,4 +51,8 @@ class SumoGame extends Model
     {
         return $this->belongsTo(Team::class, 'winner_team_id');
     }
+
+    public function loserId() {
+        return $this->winner_team_id == $this->team1_id ? $this->team2_id : $this->team1_id;
+    }
 }

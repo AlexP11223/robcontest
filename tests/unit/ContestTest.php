@@ -103,4 +103,33 @@ class ContestTest extends TestCase
             self::assertEquals($i, $indices[$i]);
         }
     }
+
+    /** @test */
+    public function returns_current_sumo_round()
+    {
+        $contest = factory(Contest::class)->create([
+            'registration_finished' => true
+        ]);
+        $team = factory(Team::class)->create([
+            'contest_id' => $contest->id,
+        ]);
+        for ($i = 0; $i < 3; $i++) {
+            for ($j = 0; $j < 2; $j++) {
+                SumoGame::create([
+                    'team1_id' => $team->id,
+                    'team2_id' => $team->id,
+                    'round_index' => $i,
+                    'game_index' => $j,
+                ]);
+            }
+        }
+
+        $currentRound = $contest->currentSumoRound();
+
+        self::assertCount(2, $currentRound);
+
+        for ($i = 0; $i < 2; $i++) {
+            self::assertEquals(2, $currentRound[$i]->round_index);
+        }
+    }
 }

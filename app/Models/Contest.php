@@ -76,7 +76,7 @@ class Contest extends Model
     }
 
     /**
-     * @return int[]
+     * @return \Illuminate\Database\Eloquent\Collection|int[]
      */
     public function sumoRoundIndices() {
         return $this->hasManyThrough(SumoGame::class, Team::class, 'contest_id', 'team1_id')
@@ -87,6 +87,18 @@ class Contest extends Model
             ->map(function($g) {
                 return $g->round_index;
             });
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|SumoGame[]
+     */
+    public function currentSumoRound()
+    {
+        $indices = $this->sumoRoundIndices();
+        $currentRoundIndex = $indices->last();
+        return $this->sumoGames()
+            ->whereRoundIndex($currentRoundIndex)
+            ->get();
     }
 
     /**

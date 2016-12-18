@@ -27,8 +27,20 @@
         <h3>Sumo</h3>
 
         <div id="sumoTree"></div>
-
     </div>
+
+    @if (Auth::check() && Auth::user()->hasRole('admin'))
+        <div class="row">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Set results</div>
+                    <div class="panel-body" id="sumoFormPanel">
+                        @include('contests.sumoform')
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
     <div class="row">
         <div class="col-md-7">
@@ -44,7 +56,7 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Set score</div>
+                    <div class="panel-heading">Set results</div>
                     <div class="panel-body">
                         @foreach($contest->obstaclesGames as $obstaclesGame)
                             <form class="form-horizontal obstacles-form" method="post" action="{{ route('set-obstacles-result', [$obstaclesGame->id]) }}">

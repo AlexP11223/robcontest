@@ -115,6 +115,10 @@ function loadSumoResult() {
             }
         });
 
+        const h1 = $('.bracket').css('height');
+        const h2 = $('.jQBracket.lr').css('height');
+        $('#sumoTree').css('height', parseInt(h2) ? h2 : h1);
+
         // TODO: ...
         $('div.score:contains("1")').text('+');
         $('div.score:contains("0")').text('−');

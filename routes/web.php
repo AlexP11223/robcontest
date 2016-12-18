@@ -33,6 +33,9 @@ Route::patch('contests/{contest}/start', 'ContestsController@start')->name('star
 
 Route::put('obstacles/{obstaclesGame}/time', 'ObstaclesController@setScore')->name('set-obstacles-result');
 
+Route::get('contests/{contest}/sumo/edit', 'SumoController@edit')->name('sumo-form');
+Route::put('sumo/{sumoGame}/result', 'SumoController@setResult')->name('set-sumo-result');
+
 Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('admin-login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
