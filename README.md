@@ -1,6 +1,6 @@
 A project created during Software Engineering course in university.
 
-PHP, Laravel. Tests/TDD.
+PHP, Laravel. Tests/TDD. Ansible for provisioning and deployment.
 
 # Project description
 
@@ -9,7 +9,7 @@ RobLeg is an annual contest for teams of two 7-12 years old children. They const
 - Sumo: Two robots try to force each other out of the ring (circle). The competition consists of several rounds, winners go to the next round until no more teams left. (single elimination tournament)
 - Obstacles course: Robots ride through a path avoiding obstacles, walls. Teams that arrive to the finish faster win.
 
-A website is needed to display current and old contests results as well as news/reports, photos, information (rules, description, …).
+A website is needed to display current and old contests results as well as news/reports, photos, information (rules, description).
 
 During the contest period it allows teams to apply (by sending team information and teacher/accompanying adult contact info), either to one or both of the competitions.
 
@@ -28,11 +28,11 @@ For development you can either use Homestead virtual machine (via Vagrant) or ma
   - Alternatively, you can follow Laravel Homestead documentation to install Homestead globally, it should not require PHP. https://laravel.com/docs/5.3/homestead
  3. Add `robcontest` and `robcontest-test` databases to Homestead.yaml.
 
- ```
- databases:
-     - robcontest
-     - robcontest-test
- ```
+     ```
+     databases:
+         - robcontest
+         - robcontest-test
+     ```
  4. Run `vagrant up`, this should download, configure and launch the virtual machine. Follow Laravel Homestead and Vagrant documentation if it fails.
  5. Use any SSH client (such as Putty on Windows) and private key (should be in `.vagrant/machines/default/virtualbox` by default, or check vagrant output) to connect into it.
 
@@ -70,3 +70,20 @@ Name and user of testing MySQL database can be changed by adding `DB_DATABASE_TE
  
 Be careful not to run tests twice at the same time (for example by `watch` and from IDE), they will fail and sometimes migrations may become "corrupted", so you may need to delete and create test database again manually.
 
+# Deployment
+
+You can use Ansible to provision the server and deploy the application. Currently provided *playbooks* support only Ubuntu, but it should not be difficult to modify for other systems.
+
+ 1. Run `git submodule update --init` or clone with ` --recursive` (`git clone --recursive git@github.com:AlexP11223/robcontest.git`) to obtain submodules with Ansible *roles*.
+ 2. Install [Ansible](http://docs.ansible.com/ansible/intro_installation.html). It is available only on Linux/MacOS, so if you are using Windows you will have to use virtual machine or "Windows 10 Bash".
+ 3. Install Python 2.5+ (not 3) on the server if it is not already installed, also  SSH access is needed.
+ 4. Go to the **ansible/** directory in the project root, create **inventory.ini** (or whatever you want to name it) and set your server address and other options if needed. See Ansible documentation for more information. 
+
+    ```
+    SERVER_IP ansible_ssh_user=root
+    ```
+Use `ssh-agent` to add/unlock your SSH key. If you are using password instead of key, you can use `--ask-pass` when running it, or add `ansible_ssh_pass=` (not recommended).
+  - You can use `ansible -i inventory.ini all -m ping` to check that it works.
+ 5. Modify settings in **ansible/vars/main.yml** if needed. Passwords, names, paths, APP_KEY, ... (of course it is not a good idea to store passwords in plaintext, so something like Ansible Vault can be used for encryption)
+ 6. Run `ansible-playbook provision.yml -i inventory.ini` to install and configure Nginx, MySQL, Git, PHP, Composer, Node.js/npm, ... 
+ 7. Run `ansible-playbook deploy.yml -i inventory.ini` to deploy the application (from Git repository).
