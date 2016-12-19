@@ -26,7 +26,7 @@ For development you can either use Homestead virtual machine (via Vagrant) or ma
  1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](https://www.vagrantup.com/downloads.html).
  2. Install PHP (just [interpreter](http://php.net/downloads.php), server not needed) and [Composer](https://getcomposer.org/download/). Go to the project root, run `composer install` and `php vendor/bin/homestead make` (for Windows `vendor\\bin\\homestead make`), this will generate configuration file, **Homestead.yaml**.
   - Alternatively, you can follow Laravel Homestead documentation to install Homestead globally, it should not require PHP. https://laravel.com/docs/5.3/homestead
- 3. Add `robcontest` and `robcontest-test` databases to Homestead.yaml.
+ 3. Add `robcontest` and `robcontest-test` databases to **Homestead.yaml**.
 
      ```
      databases:
@@ -34,7 +34,7 @@ For development you can either use Homestead virtual machine (via Vagrant) or ma
          - robcontest-test
      ```
  4. Run `vagrant up`, this should download, configure and launch the virtual machine. Follow Laravel Homestead and Vagrant documentation if it fails.
- 5. Use any SSH client (such as Putty on Windows) and private key (should be in `.vagrant/machines/default/virtualbox` by default, or check vagrant output) to connect into it.
+ 5. Use any SSH client (such as Putty on Windows) and private key (should be in **.vagrant/machines/default/virtualbox** by default, or check vagrant output) to connect into it.
 
 ## Without Vagrant
 
@@ -82,7 +82,7 @@ You can use Ansible to provision the server and deploy the application. Currentl
     ```
     SERVER_IP ansible_ssh_user=root
     ```
-Use `ssh-agent` to add/unlock your SSH key. If you are using password instead of key, you can use `--ask-pass` when running it, or add `ansible_ssh_pass=` (not recommended).
+Use `ssh-agent` to add/unlock your SSH key. If you are using password instead of key, you can use `--ask-pass` when running Ansible, or add `ansible_ssh_pass=` (not recommended).
   - You can use `ansible -i inventory.ini all -m ping` to check that it works.
  5. Modify settings in **ansible/vars/main.yml** if needed. Passwords, names, paths, APP_KEY, ... (of course it is not a good idea to store passwords in plaintext, so something like Ansible Vault can be used for encryption)
  6. Run `ansible-playbook provision.yml -i inventory.ini` to install and configure Nginx, MySQL, Git, PHP, Composer, Node.js/npm, ... 
