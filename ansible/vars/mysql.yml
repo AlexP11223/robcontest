@@ -1,0 +1,12 @@
+mysql_databases:
+    - name: "{{ db_name }}"
+      collation: utf8_general_ci
+      encoding: utf8
+    - name: "{{ test_db_name }}"
+      collation: utf8_general_ci
+      encoding: utf8
+mysql_users:
+  - name: "{{ db_user }}"
+    host: "%"
+    password: "{{ db_password }}"
+    priv: "{{ db_name }}.*:ALL/{{ test_db_name }}.*:ALL"

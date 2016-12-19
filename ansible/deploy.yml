@@ -1,0 +1,41 @@
+---
+- hosts: all
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+
+  - name: create project directory
+    file: dest="{{ project_root }}" state=directory owner="{{ web_user }}" group="{{ web_user_group }}" mode=0700
+
+  - name: clone/update from git repository
+    git:
+      dest="{{ project_root }}"
+      repo="{{ git_repo }}"
+      accept_hostkey=true
+    become: yes
+    become_user: "{{ web_user }}"
+
+  - name: create .env
+    template: src=templates/.env.j2 dest="{{ project_root }}/.env" owner="{{ web_user }}" group="{{ web_user_group }}"
+
+  - composer:
+      command: install
+      working_dir: "{{ project_root }}"
+    become: yes
+    become_user: "{{ web_user }}"
+
+  - name: migrate database
+    command: php artisan migrate --force
+    args:
+      chdir: "{{ project_root }}"
+
+  - name: npm install
+    command: npm install
+    args:
+      chdir: "{{ project_root }}"
+
+  - name: npm run prod
+    command: npm run prod
+    args:
+      chdir: "{{ project_root }}"

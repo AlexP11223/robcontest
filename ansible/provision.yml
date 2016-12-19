@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  vars_files:
+    - vars/main.yml
+    - vars/nginx.yml
+    - vars/php.yml
+    - vars/mysql.yml
+  roles:
+    - git
+    - nginx
+    - mysql
+    - php
+    - composer
+    - memcached
+    - nodejs

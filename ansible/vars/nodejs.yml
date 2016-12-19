@@ -1,0 +1,17 @@
+timezone: Europe/Vilnius
+php_timezone: "Europe/Vilnius"
+php_date_timezone: "Europe/Vilnius"
+php_enable_php_fpm: true
+php_packages:
+  - php
+  - php-cli
+  - php-common
+  - php-fpm
+  - php-dev
+  - php-gd
+  - php-mbstring
+  - php-opcache
+  - php-pdo
+  - php-mcrypt
+  - php-apcu
+  - php-mysql

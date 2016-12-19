@@ -1,0 +1,17 @@
+project_root: /robcontest
+www_root: /robcontest/public
+
+web_user: www-data
+web_user_group: www-data
+
+db_user: RobcontestUser
+db_password: RobcontestPassword
+db_name: robcontest
+test_db_name: robcontest-test
+
+mysql_root_password: super-secure-password
+
+# generate via php artisan key:generate
+app_key: base64:CK1zmCayD8mjoaoc4aVGkvmU4foDs/ipWPpzaTI5N2Y=
+
+git_repo: https://github.com/AlexP11223/robcontest.git
