@@ -12,7 +12,7 @@ $("#member2_dob").datepicker({
 });
 
 
-$('body').on('blur', 'input[type="number"]', function(){
+$('body').on('blur', 'input.phone-input', function(){
     var $input = $(this);
     $input.val($input.val().replace(/[^\d]+/g,''));
 });
@@ -82,6 +82,7 @@ $("#applyForm").validate({
         },
         phone: {
             required: "Enter phone number",
+            pattern: "Enter correct phone number (such as in format 370xxxxxxxx)",
             minlength: "Enter correct phone number (such as in format 370xxxxxxxx)",
             maxlength: "Enter correct phone number (such as in format 370xxxxxxxx)"
         },

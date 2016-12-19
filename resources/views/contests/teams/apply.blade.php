@@ -99,7 +99,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="number" class="form-control" id="phone" name="phone" value="{{ old('phone', '370') }}" />
+                        <input  type="text" pattern="[0-9]*" class="form-control phone-input" id="phone" name="phone" value="{{ old('phone', '370') }}" />
                     </div>
                 </div>
 
