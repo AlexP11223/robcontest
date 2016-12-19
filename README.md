@@ -74,7 +74,7 @@ Be careful not to run tests twice at the same time (for example by `watch` and f
 
 You can use Ansible to provision the server and deploy the application. Currently provided *playbooks* support only Ubuntu, but it should not be difficult to modify for other systems.
 
- 1. Run `git submodule update --init` or clone with ` --recursive` (`git clone --recursive git@github.com:AlexP11223/robcontest.git`) to obtain submodules with Ansible *roles*.
+ 1. Run `git submodule update --init` or clone with ` --recursive` (`git clone --recursive https://github.com/AlexP11223/robcontest.git`) to obtain submodules with Ansible *roles*.
  2. Install [Ansible](http://docs.ansible.com/ansible/intro_installation.html). It is available only on Linux/MacOS, so if you are using Windows you will have to use virtual machine or "Windows 10 Bash".
  3. Install Python 2.5+ (not 3) on the server if it is not already installed, also  SSH access is needed.
  4. Go to the **ansible/** directory in the project root, create **inventory.ini** (or whatever you want to name it) and set your server address and other options if needed. See Ansible documentation for more information. 
